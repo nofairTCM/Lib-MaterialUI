@@ -1,0 +1,9 @@
+{
+  "name": "nofairTCM",
+  "tree": {
+    "$properties": {
+      "Name": "MaterialUI"
+    },
+    "$path": "src"
+  }
+}
