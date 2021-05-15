@@ -1444,19 +1444,20 @@ function module.Silder_New(Parent)
 	module:ClassTheme(This)
 	return This
 end
+local PreLoadLoadingIndeterminateCircle = false
 function module.IndeterminateCircle_New(Parent)	
 	local This,FireChanged
 	
 	local Obj = script.Class_IndeterminateCircle.IndeterminateCircle:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
-	--	if not PreLoadLoadingC then
-	--		PreLoadLoadingC = true
-	--		coroutine.resume(coroutine.create(function()
-	--			PreLoad:PreloadAsync(Obj.Holder:GetChildren())
-	--		end))
-	--	end
 	local AnimationId = require(script.IndeterminateCircleImageIDs)
+	if not PreLoadLoadingIndeterminateCircle then
+		PreLoadLoadingC = true
+		coroutine.resume(coroutine.create(function()
+			PreLoad:PreloadAsync(Obj.Holder:GetChildren())
+		end))
+	end
 	
 	local Data = {
 		Disabled = false;
