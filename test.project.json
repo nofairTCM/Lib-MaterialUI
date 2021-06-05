@@ -1,0 +1,21 @@
+{
+  "name": "nofairTCM",
+  "tree": {
+    "$className": "DataModel",
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "nofairTCM-Server": {
+        "$className": "Folder"
+      }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "nofairTCM_Client": {
+        "$className": "Folder",
+        "MaterialUI": {
+          "$path": "src/client"
+        }
+      }
+    }
+  }
+}
