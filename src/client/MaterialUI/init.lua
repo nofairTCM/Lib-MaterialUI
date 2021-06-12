@@ -1820,33 +1820,31 @@ function module.IndeterminateProgress_New(Parent)
 				end
 			end
 		end
-		coroutine.resume(coroutine.create(function()
-			Two = false
-			Index = Index+1
-			local NowIndex = Index
-			while NowIndex == Index and not Data.Disabled do
-				local BarClone = script.Class_IndeterminateProgress.Bar:Clone()
-				BarClone.Parent = Obj
-				BarClone.ZIndex = Obj.ZIndex
-				BarClone.BackgroundColor3 = Data.AnimationColor3
-				
-				BarClone.Size = UDim2.new(0.5,0,1,0)
-				BarClone.AnchorPoint = Vector2.new(0.5,0)
-				BarClone:TweenPosition(UDim2.new(1.5,0,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,4 / Data.Speed,true,nil)
-				
-				BarClone:TweenSize(Two and UDim2.new(0.5,0,1,0) or UDim2.new(0.1,0,1,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,1 / Data.Speed,true,nil)
-				wait(1 / Data.Speed)
-				BarClone:TweenSize(Two and UDim2.new(0.2,0,1,0) or UDim2.new(0.62,0,1,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,(Two and 1.68 or 1) / Data.Speed,true,nil)
-				BarClone.Size = Two and UDim2.new(0.5,0,1,0) or UDim2.new(0.1,0,1,0)
-				
-				Two = not Two
-				delay(3 / Data.Speed,function()
-					BarClone:Destroy()
-				end)
-			end
-		end))
+		Two = false
+		Index = Index+1
+		local NowIndex = Index
+		while NowIndex == Index and not Data.Disabled do
+			local BarClone = script.Class_IndeterminateProgress.Bar:Clone()
+			BarClone.Parent = Obj
+			BarClone.ZIndex = Obj.ZIndex
+			BarClone.BackgroundColor3 = Data.AnimationColor3
+			
+			BarClone.Size = UDim2.new(0.5,0,1,0)
+			BarClone.AnchorPoint = Vector2.new(0.5,0)
+			BarClone:TweenPosition(UDim2.new(1.5,0,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,4 / Data.Speed,true,nil)
+			
+			BarClone:TweenSize(Two and UDim2.new(0.5,0,1,0) or UDim2.new(0.1,0,1,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,1 / Data.Speed,true,nil)
+			wait(1 / Data.Speed)
+			BarClone:TweenSize(Two and UDim2.new(0.2,0,1,0) or UDim2.new(0.62,0,1,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,(Two and 1.68 or 1) / Data.Speed,true,nil)
+			BarClone.Size = Two and UDim2.new(0.5,0,1,0) or UDim2.new(0.1,0,1,0)
+			
+			Two = not Two
+			delay(3 / Data.Speed,function()
+				BarClone:Destroy()
+			end)
+		end
 	end
-	doLoading()
+	spawn(doLoading)
 	
 	local Properties = Class:MakeDictionary({
 		"Visible";
@@ -1887,7 +1885,7 @@ function module.IndeterminateProgress_New(Parent)
 	local Setter = {
 		Disabled = function(Value)
 			Data.Disabled = Value
-			doLoading()
+			spawn(doLoading)
 		end;
 		AnimationSpeed = function(Value)
 			Data.Speed = Value
