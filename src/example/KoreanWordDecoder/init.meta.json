@@ -1,0 +1,8 @@
+{
+    "className": "ScreenGui",
+    "properties": {
+        "ZIndexBehavior": "Global",
+        "ResetOnSpawn": false,
+        "Name": "KoreanWordDecoder"
+    }
+}
