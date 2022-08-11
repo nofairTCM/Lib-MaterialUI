@@ -13,23 +13,23 @@ if not script then
 end
 
 -- init
-do 
-	local resource = script:FindFirstChild("resource")
-	if resource then
-		if resource:IsA("ModuleScript") then
-			local Items = require(resource)
-			for _,Item in pairs(Items:GetChildren()) do
-				Item.Parent = script
-			end
-			Items:Destroy()
-		end
+-- do 
+-- 	local resource = script:FindFirstChild("resource")
+-- 	if resource then
+-- 		if resource:IsA("ModuleScript") then
+-- 			local Items = require(resource)
+-- 			for _,Item in pairs(Items:GetChildren()) do
+-- 				Item.Parent = script
+-- 			end
+-- 			Items:Destroy()
+-- 		end
 		
-		for _,Item in pairs(resource:GetChildren()) do
-			Item.Parent = script
-		end
-		resource:Destroy()
-	end
-end
+-- 		for _,Item in pairs(resource:GetChildren()) do
+-- 			Item.Parent = script
+-- 		end
+-- 		resource:Destroy()
+-- 	end
+-- end
 
 --[[
 	Var 1.18
@@ -554,7 +554,7 @@ end
 function module.IconButton_New(Parent)	
 	local This,FireChanged
 	
-	local Obj = script.Class_IconButton.IconButton:Clone()
+	local Obj = script.resource.Class_IconButton.IconButton:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	local Data = {
 		RippleColor3 = Color3.fromRGB(255,255,255);
@@ -575,7 +575,7 @@ function module.IconButton_New(Parent)
 			return
 		end
 		
-		Ripple = script.Class_Ripple.Ripple:Clone()
+		Ripple = script.resource.Class_Ripple.Ripple:Clone()
 		Ripple.ZIndex = Obj.ZIndex
 		Ripple.Parent = Obj
 		Ripple:TweenSize(UDim2.new(1,0,1,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quint,true,0.6/Data.Speed,nil)
@@ -851,7 +851,7 @@ function module.IconButton_New(Parent)
 			if Value then
 				local OldToolTip = Obj:FindFirstChild("ToolTip")
 				if OldToolTip == nil then
-					local New = script.Class_ToolTip.ToolTip:Clone()
+					local New = script.resource.Class_ToolTip.ToolTip:Clone()
 					New.Parent = Obj
 					New.ImageColor3 = Data.ToolTipBackgroundColor3
 					New.TextLabel.TextColor3 = Data.ToolTipTextColor3
@@ -935,7 +935,7 @@ end
 function module.ToolTip_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_ToolTip.ToolTip:Clone()
+	local Obj = script.resource.Class_ToolTip.ToolTip:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	local Data = {
 		Disabled = false;
@@ -1102,7 +1102,7 @@ function module.Silder_New(Parent)
 	local This,FireChanged
 	
 	local ValueChanged = Instance.new("BindableEvent")
-	local Obj = script.Class_Silder.Silder:Clone()
+	local Obj = script.resource.Class_Silder.Silder:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local MouseMoveConnect
@@ -1448,10 +1448,10 @@ local PreLoadLoadingIndeterminateCircle = false
 function module.IndeterminateCircle_New(Parent)	
 	local This,FireChanged
 	
-	local Obj = script.Class_IndeterminateCircle.IndeterminateCircle:Clone()
+	local Obj = script.resource.Class_IndeterminateCircle.IndeterminateCircle:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
-	local AnimationId = require(script.IndeterminateCircleImageIDs)
+	local AnimationId = require(script.resource.IndeterminateCircleImageIDs)
 	if not PreLoadLoadingIndeterminateCircle then
 		PreLoadLoadingC = true
 		coroutine.resume(coroutine.create(function()
@@ -1586,7 +1586,7 @@ function module.IndeterminateCircle_New(Parent)
 end
 function module.Rippler_New(Parent)	
 	local This,FireChanged
-	local Obj = script.Class_Ripple.RippleHolder:Clone()
+	local Obj = script.resource.Class_Ripple.RippleHolder:Clone()
 	
 	local Data = {
 		Disabled = false;
@@ -1612,7 +1612,7 @@ function module.Rippler_New(Parent)
 		if Ripple or Data.Disabled then
 			return
 		end
-		Ripple = script.Class_Ripple.Ripple:Clone()
+		Ripple = script.resource.Class_Ripple.Ripple:Clone()
 		Ripple.ImageColor3 = Obj.BackgroundColor3
 		Ripple.ZIndex = Obj.ZIndex
 		local Size,Pos = GetRippleSize:GetRippleSize(Obj,module:GetMouseWithObject(Obj))
@@ -1797,7 +1797,7 @@ end
 function module.IndeterminateProgress_New(Parent)	
 	local This,FireChanged
 	
-	local Obj = script.Class_IndeterminateProgress.IndeterminateProgress:Clone()
+	local Obj = script.resource.Class_IndeterminateProgress.IndeterminateProgress:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -1824,7 +1824,7 @@ function module.IndeterminateProgress_New(Parent)
 		Index = Index+1
 		local NowIndex = Index
 		while NowIndex == Index and not Data.Disabled do
-			local BarClone = script.Class_IndeterminateProgress.Bar:Clone()
+			local BarClone = script.resource.Class_IndeterminateProgress.Bar:Clone()
 			BarClone.Parent = Obj
 			BarClone.ZIndex = Obj.ZIndex
 			BarClone.BackgroundColor3 = Data.AnimationColor3
@@ -1927,7 +1927,7 @@ end
 function module.LinearProgress_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_LinearProgress.LinearProgress:Clone()
+	local Obj = script.resource.Class_LinearProgress.LinearProgress:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -2042,7 +2042,7 @@ end
 function module.Shadow_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_Shadow.Shadow:Clone()
+	local Obj = script.resource.Class_Shadow.Shadow:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Properties = Class:MakeDictionary({
@@ -2132,7 +2132,7 @@ function module.Switch_New(Parent)
 	local This,FireChanged
 	
 	local ValueChanged = Instance.new("BindableEvent")
-	local Obj = script.Class_Switch.Switch:Clone()
+	local Obj = script.resource.Class_Switch.Switch:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -2327,7 +2327,7 @@ function module.CheckBox_New(Parent)
 	local This,FireChanged
 	
 	local ValueChanged = Instance.new("BindableEvent")
-	local Obj = script.Class_CheckBox.CheckBox:Clone()
+	local Obj = script.resource.Class_CheckBox.CheckBox:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -2345,7 +2345,7 @@ function module.CheckBox_New(Parent)
 			return
 		end
 		
-		Ripple = script.Class_Ripple.Ripple:Clone()
+		Ripple = script.resource.Class_Ripple.Ripple:Clone()
 		Ripple.ZIndex = Obj.ZIndex + 1
 		Ripple.Parent = Obj
 		Ripple:TweenSize(UDim2.new(2,0,2,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quint,true,0.6/Data.Speed,nil)
@@ -2593,7 +2593,7 @@ end
 function module.Pointing_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_Pointing.Pointing:Clone()
+	local Obj = script.resource.Class_Pointing.Pointing:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -2615,7 +2615,7 @@ function module.Pointing_New(Parent)
 				if not Obj:FindFirstChild("Pointer") then
 					return
 				elseif not Data.Disabled then
-					local New = script.Class_Pointing.PointerRipple:Clone()
+					local New = script.resource.Class_Pointing.PointerRipple:Clone()
 					New.ZIndex = Obj.ZIndex
 					New.ImageColor3 = Obj.Pointer.ImageColor3
 					New.Parent = Obj
@@ -2721,7 +2721,7 @@ end
 function module.TreeView_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_TreeView.TreeView:Clone()
+	local Obj = script.resource.Class_TreeView.TreeView:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Item = Obj.Item
@@ -2894,7 +2894,7 @@ function module.Scroll_New(Parent)
 	
 	local Moved = Instance.new("BindableEvent")
 	
-	local Obj = script.Class_Scroll.Scroll:Clone()
+	local Obj = script.resource.Class_Scroll.Scroll:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local InputFrame
@@ -2916,7 +2916,7 @@ function module.Scroll_New(Parent)
 	Obj.Holder.UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(RefreshCanvasSize)
 	
 	if not UserInputService.TouchEnabled then
-		InputFrame = script.Class_Scroll.InputFrame:Clone()
+		InputFrame = script.resource.Class_Scroll.InputFrame:Clone()
 		InputFrame.ZIndex = Obj.ZIndex + 1
 		InputFrame.Parent = Obj
 		InputFrame.Active = true
@@ -3127,7 +3127,7 @@ function module.Tabs_New(Parent)
 	
 	local Moved = Instance.new("BindableEvent")
 	
-	local Obj = script.Class_Tabs.Tabs:Clone()
+	local Obj = script.resource.Class_Tabs.Tabs:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local InputFrame
@@ -3196,7 +3196,7 @@ function module.Tabs_New(Parent)
 	end
 	
 	if not UserInputService.TouchEnabled then
-		ScrollInput = script.Class_Tabs.InputFrame:Clone()
+		ScrollInput = script.resource.Class_Tabs.InputFrame:Clone()
 		ScrollInput.Active = true
 		ScrollInput.Parent = Bar
 		Bar.Buttons.ScrollingEnabled = false
@@ -3357,8 +3357,8 @@ function module.Tabs_New(Parent)
 		AddTab = function(self,TabName,TabIndex,TabButtonSizeX,TabIcon,TabIconColor3)
 			local TabIndex = TabIndex or Data.Index
 			
-			local TabFrame = script.Class_Tabs.TabFrame:Clone()
-			local TabButton = script.Class_Tabs.TabButton:Clone()
+			local TabFrame = script.resource.Class_Tabs.TabFrame:Clone()
+			local TabButton = script.resource.Class_Tabs.TabButton:Clone()
 			
 			TabButton.Name = "Tab_" .. tostring(TabIndex)
 			TabButton.Holder.TextLabel.Text = TabName
@@ -3455,7 +3455,7 @@ end
 function module.TextField_New(Parent)
 	local This,FireChanged
 	local TextChanged = Instance.new("BindableEvent")
-	local Obj = script.Class_TextField.TextField:Clone()
+	local Obj = script.resource.Class_TextField.TextField:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -3493,7 +3493,7 @@ function module.TextField_New(Parent)
 	end
 	
 	local function SetStyle(Value)
-		local StyleFolder = script.Class_TextField.Style:FindFirstChild(Value)
+		local StyleFolder = script.resource.Class_TextField.Style:FindFirstChild(Value)
 		if StyleFolder == nil then
 			error(("%s is not member of TextFieldStyle"):format(Value))
 		end
@@ -3629,7 +3629,7 @@ function module.TextField_New(Parent)
 		end
 		local EffectTime = 0.05
 		
-		local Effect = script.Class_TextField.ErrorEffect:Clone()
+		local Effect = script.resource.Class_TextField.ErrorEffect:Clone()
 		Effect.Parent = Obj.Placeholder--.ErrorText
 		local ToLeft = Tween:Create(Effect,TweenInfo.new(EffectTime/Data.Speed,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),
 			{PaddingLeft = UDim.new(0,4);}
@@ -3906,7 +3906,7 @@ end
 function module.Button_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_Button.Button:Clone()
+	local Obj = script.resource.Class_Button.Button:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	local Data = {
 		RippleColor3 = Color3.fromRGB(255,255,255);
@@ -3953,7 +3953,7 @@ function module.Button_New(Parent)
 		end
 		Data.RoundSize = Size
 		Obj.RippleContainer:Destroy()
-		local New = script.Class_Button.RoundSize:FindFirstChild(tostring(Size))
+		local New = script.resource.Class_Button.RoundSize:FindFirstChild(tostring(Size))
 		if New then
 			New.RippleContainer:Clone().Parent = Obj
 			Obj.Image = New.Img.Image
@@ -4016,7 +4016,7 @@ function module.Button_New(Parent)
 				local PosX = X - (v.AbsolutePosition.X)
 				local PosY = Y - (v.AbsolutePosition.Y)
 				
-				local Ripple = script.Class_Ripple.Ripple:Clone()
+				local Ripple = script.resource.Class_Ripple.Ripple:Clone()
 				Ripple.Position = UDim2.new(0,PosX,0,PosY)
 				Ripple.ImageTransparency = tonumber(v.Name)
 				Ripple.Parent = v
@@ -4333,7 +4333,7 @@ function module.Button_New(Parent)
 			if Value then
 				local OldToolTip = Obj:FindFirstChild("ToolTip")
 				if OldToolTip == nil then
-					local New = script.Class_ToolTip.ToolTip:Clone()
+					local New = script.resource.Class_ToolTip.ToolTip:Clone()
 					New.Parent = Obj
 					New.ImageColor3 = Data.ToolTipBackgroundColor3
 					New.TextLabel.TextColor3 = Data.ToolTipTextColor3
@@ -4433,7 +4433,7 @@ end
 function module.Snackbars_New(Parent)
 	local This,FireChanged
 	
-	local Obj = script.Class_Snackbar.Snackbars:Clone()
+	local Obj = script.resource.Class_Snackbar.Snackbars:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Index = 0
@@ -4596,7 +4596,7 @@ function module.RadioButton_New(Parent)
 	local SetValueEvent = Instance.new("BindableEvent")
 	local Items = {}
 	
-	local Obj = script.Class_RadioButton.RadioHolder:Clone()
+	local Obj = script.resource.Class_RadioButton.RadioHolder:Clone()
 	Obj.Parent = type(Parent) == "table" and Parent.Holder or Parent
 	
 	local Data = {
@@ -4727,7 +4727,7 @@ function module.RadioButton_New(Parent)
 			return New
 		end;
 		AddItem = function(self,Index,Name,Text,TextColor3,SizeY)
-			local New = script.Class_RadioButton.RadioButton:Clone()
+			local New = script.resource.Class_RadioButton.RadioButton:Clone()
 			local SelectChanged = Instance.new("BindableEvent",New)
 			
 			local ItemObj = {
@@ -4969,7 +4969,7 @@ function module:SetOutline(ImageLabel,RoundSize)
 end
 
 function module:GetShadowImage(Size,Index,Parent)
-	local New = script.RoundShadow:Clone()
+	local New = script.resource.RoundShadow:Clone()
 	New.Size = UDim2.new(1,Size or 40,1,Size or 40)
 	New.ZIndex = Index or 1
 	New.Parent = Parent
