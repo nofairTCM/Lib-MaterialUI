@@ -1,0 +1,9 @@
+{
+	"name": "MaterialUI",
+	"tree": {
+		"$properties": {
+			"Name": "MaterialUI"
+		},
+		"$path": "src/client/MaterialUI"
+	}
+}
